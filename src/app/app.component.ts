@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
     const videoEl = $('#videoEl').get(0);
     const minConfidence = 0.05
     //const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 512, scoreThreshold: 0.8 });
-    const options = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.5 });
+    const options = new faceapi.SsdMobilenetv1Options({ minConfidence: 0.7 });
 
     const detections = await faceapi.detectAllFaces(videoEl, options)
       .withFaceLandmarks()
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit {
       //faceapi.draw.drawFaceLandmarks(canvas, resizedResults);
       
       const fetchBest = this.faceMatcher.matchDescriptor(descriptor);
-      if (fetchBest.distance < 0.49) {
+      if (fetchBest.distance < 0.45) {
         const label = fetchBest.toString();
         const options = { label };
         const drawBox = new faceapi.draw.DrawBox(detection.box, options);
