@@ -113,7 +113,8 @@ export class AppComponent implements OnInit {
     resizedResults.forEach(({ detection, descriptor, age, gender, genderProbability }) => {
       //faceapi.draw.drawFaceLandmarks(canvas, resizedResults);
       
-      const fetchBest = this.faceMatcher.matchDescriptor(descriptor);
+      //const fetchBest = this.faceMatcher.matchDescriptor(descriptor);
+      const fetchBest = this.faceMatcher.findBestMatch(descriptor);
       if (fetchBest.distance < 0.45) {
         const label = fetchBest.toString();
         const options = { label };
