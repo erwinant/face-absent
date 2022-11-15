@@ -126,8 +126,8 @@ export class AppComponent implements OnInit {
         faceapi.draw.drawFaceExpressions(canvas, resizedResults, minConfidence);
         new faceapi.draw.DrawTextField(
           [
-           '',
-            ''
+            `${Math.round(age).toString()} years`,
+            `${gender} (${Math.round(genderProbability).toString()})`,
           ],
           detection.box
         ).draw(canvas);
