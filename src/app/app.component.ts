@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
     this.videoEl = $('#videoEl').get(0);
     this.videoEl.srcObject = this.stream;
     if (this.videoEl.srcObject.active === true) {
+
       setTimeout(() => {
         this.startTrackingFace();
       }, 500);
@@ -112,9 +113,12 @@ export class AppComponent implements OnInit {
 
     resizedResults.forEach(({ detection, descriptor, age, gender, genderProbability }) => {
       //faceapi.draw.drawFaceLandmarks(canvas, resizedResults);
-      
-      //const fetchBest = this.faceMatcher.matchDescriptor(descriptor);
-      const fetchBest = this.faceMatcher.findBestMatch(descriptor);
+
+      //ini bisa
+      const fetchBest = this.faceMatcher.matchDescriptor(descriptor);
+
+      //ini juga bisa
+      // const fetchBest = this.faceMatcher.findBestMatch(descriptor);
       if (fetchBest.distance < 0.45) {
         const label = fetchBest.toString();
         const options = { label };
@@ -122,9 +126,8 @@ export class AppComponent implements OnInit {
         faceapi.draw.drawFaceExpressions(canvas, resizedResults, minConfidence);
         new faceapi.draw.DrawTextField(
           [
-            `${faceapi.round(age, 0)} years`,
-            `${gender} (${faceapi.round(genderProbability)})`,
-
+           '',
+            ''
           ],
           detection.box
         ).draw(canvas);
